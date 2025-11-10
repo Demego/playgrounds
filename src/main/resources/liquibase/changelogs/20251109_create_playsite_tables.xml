@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="create_playsite_tables" author="aivaras.b">
+
+    <createTable tableName="play_site">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+    </createTable>
+
+    <createTable tableName="play_site_attraction">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="playsite_id" type="bigint"/>
+      <column name="type" type="varchar(255) NOT NULL"/>
+      <column name="capacity" type="int NOT NULL"/>
+    </createTable>
+
+    <createTable tableName="play_site_user">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="playsite_id" type="bigint"/>
+      <column name="name" type="varchar(255) NOT NULL"/>
+      <column name="age" type="int NOT NULL"/>
+      <column name="ticket_number" type="varchar(255) NOT NULL">
+        <constraints unique="true"/>
+      </column>
+      <column name="entered_at" type="timestamp NOT NULL"/>
+
+    </createTable>
+
+    <createTable tableName="play_site_wait_queue">
+      <column autoIncrement="true" name="id" type="bigint">
+        <constraints nullable="false" primaryKey="true"/>
+      </column>
+      <column name="playsite_id" type="bigint"/>
+      <column name="name" type="varchar(255) NOT NULL"/>
+      <column name="age" type="int NOT NULL"/>
+      <column name="ticket_number" type="varchar(255) NOT NULL">
+        <constraints unique="true"/>
+      </column>
+      <column name="status" type="varchar(255) NOT NULL"/>
+      <column name="started_at" type="timestamp NOT NULL"/>
+
+    </createTable>
+
+  </changeSet>
+
+</databaseChangeLog>
